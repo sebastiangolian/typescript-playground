@@ -1,0 +1,19 @@
+{
+  "name": "typescript-playground",
+  "version": "1.0.0",
+  "description": "Playground aplication for typescript",
+  "main": "index.html",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --w",
+    "deploy": "npm run build && node scripts/deploy.js"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "sebastiangolian <sebastiangolian@gmail.com>",
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "fs-extra": "^7.0.1"
+  }
+}
