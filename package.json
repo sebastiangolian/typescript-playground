@@ -13,7 +13,10 @@
   ],
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
   "devDependencies": {
-    "gh-pages": "^2.0.1",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "gh-pages": "^2.0.1"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.21"
   }
 }
