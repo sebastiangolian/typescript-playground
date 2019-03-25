@@ -8,7 +8,10 @@ This playground application for TypeScript with HTML.
 ```bash
 npm install
 ```
-
+Start project
+```bash
+npm run start
+```
 ## Scripts
 Build project
 ```bash

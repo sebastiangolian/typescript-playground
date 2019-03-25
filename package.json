@@ -4,6 +4,7 @@
   "description": "Playground aplication for typescript",
   "main": "index.html",
   "scripts": {
+    "start": "http-server ./dist -o",
     "build": "tsc",
     "watch": "tsc --w",
     "deploy": "npm run build && node scripts/deploy.js"
@@ -14,7 +15,8 @@
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
   "devDependencies": {
     "fs-extra": "^7.0.1",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "http-server": "^0.11.1"
   },
   "dependencies": {
     "@types/node": "^10.12.21"
