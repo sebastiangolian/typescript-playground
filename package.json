@@ -9,14 +9,20 @@
     "watch": "tsc --w",
     "deploy": "npm run build && node scripts/deploy.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastiangolian/typescript-playground.git"
+  },
   "keywords": [
     "typescript"
   ],
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.1",
+    "lodash": "^4.17.14"
   },
   "dependencies": {
     "@types/node": "^10.12.21"
