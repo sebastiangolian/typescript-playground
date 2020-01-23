@@ -19,12 +19,12 @@
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "fs-extra": "^7.0.1",
-    "gh-pages": "^2.0.1",
-    "http-server": "^0.11.1",
-    "lodash": "^4.17.14"
+    "fs-extra": "^8.1.0",
+    "gh-pages": "^2.2.0",
+    "http-server": "^0.12.1",
+    "lodash": "^4.17.15"
   },
   "dependencies": {
-    "@types/node": "^10.12.21"
+    "@types/node": "^13.1.8"
   }
 }

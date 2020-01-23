@@ -7,7 +7,7 @@ export class User {
         return this.firstname + " " + this.lastname;
     }
     log() {
-        console.log("firstname is  :   " + this.firstname);
-        console.log("lastname is  :   " + this.lastname);
+        console.log("Firstname is  :   " + this.firstname);
+        console.log("Lastname is  :   " + this.lastname);
     }
 }
