@@ -10,3 +10,4 @@ const user2 = new User("Jan","Kowal12");
 print.log(user.getFullName())
 print.log(user2.getFullName())
 print.log(indexedArray)
+console.log('test1123')

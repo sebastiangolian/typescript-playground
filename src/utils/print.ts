@@ -1,12 +1,19 @@
 export class Print {
-    private httpElement: HTMLElement;
+    private httpElement: HTMLElement | null;
 
     constructor(space: string) {
-        this.httpElement = document.getElementById(space) as HTMLElement;
+        if (typeof document !== 'undefined') {
+            this.httpElement = document.getElementById(space) as HTMLElement;
+        } else {
+            this.httpElement = null
+        }
     }
 
     log(txt: any) {
-        console.log('test')
-        this.httpElement.innerHTML += `${JSON.stringify(txt)}<br />`;
+        if (this.httpElement) {
+            this.httpElement.innerHTML += `${JSON.stringify(txt)}<br />`;
+        } else {
+            console.log(txt)
+        }
     }
 }

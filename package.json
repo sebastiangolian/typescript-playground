@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "Playground aplication for typescript",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "serve": "live-server ./dist --port=8081 --wait=100",
     "build": "tsc",
     "watch": "tsc --w",
     "deploy": "gh-pages -d dist/",
-    "start": "concurrently 'npm run serve' 'npm run watch'"
+    "node": "nodemon ./dist/js/app.js",
+    "start": "npm run node & npm run watch",
+    "start:browser": "concurrently 'npm run watch' 'npm run serve'",
+    "start:node": "npm run start"
   },
   "repository": {
     "type": "git",
@@ -21,7 +25,8 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.4.0",
+    "gh-pages": "^4.0.0",
     "live-server": "^1.1.0",
-    "gh-pages": "^4.0.0"
+    "nodemon": "^2.0.19"
   }
 }
