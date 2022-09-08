@@ -4,10 +4,11 @@
   "description": "Playground aplication for typescript",
   "main": "index.html",
   "scripts": {
-    "start": "http-server ./dist -o",
+    "serve": "live-server ./dist --port=8081 --wait=100",
     "build": "tsc",
     "watch": "tsc --w",
-    "deploy": "npm run build && node scripts/deploy.js"
+    "deploy": "npm run build && node scripts/deploy.js",
+    "start": "concurrently 'npm run serve' 'npm run watch'"
   },
   "repository": {
     "type": "git",
@@ -19,12 +20,7 @@
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "fs-extra": "^8.1.0",
-    "gh-pages": "^2.2.0",
-    "http-server": "^0.12.1",
-    "lodash": "^4.17.21"
-  },
-  "dependencies": {
-    "@types/node": "^13.1.8"
+    "concurrently": "^7.4.0",
+    "live-server": "^1.1.0"
   }
 }
