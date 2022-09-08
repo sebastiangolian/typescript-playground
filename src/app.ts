@@ -1,6 +1,12 @@
-import { User } from "./classes/User.js";
+import { indexedArray } from "./classes/array-index.js";
+import { User } from "./classes/user.js";
+import { Print } from "./utils/print.js";
+
+const print = new Print("test");
 const user = new User("Jan","Kowal3");
 const user2 = new User("Jan","Kowal12");
-const test = document.getElementById("test") as HTMLElement;
-test.innerHTML += user.getFullName() + "<br />";
-test.innerHTML += user2.getFullName();
+
+
+print.log(user.getFullName())
+print.log(user2.getFullName())
+print.log(indexedArray)

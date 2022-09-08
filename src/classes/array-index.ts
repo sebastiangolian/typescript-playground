@@ -1,0 +1,1 @@
+export const indexedArray: { [key: string]: number } = { foo: 123, bar: 456 }
