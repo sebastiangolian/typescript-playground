@@ -2,6 +2,7 @@ import { indexedArray } from "./classes/array-index.js";
 import { PrinterPluginColor, Printer } from "./classes/printer.js";
 import { User } from "./classes/user.js";
 import { abstractFactoryRun } from "./patterns/abstract-factory.js";
+import { singletonRun } from "./patterns/singleton.js";
 import { Print } from "./utils/print.js";
 
 
@@ -14,4 +15,4 @@ import { Print } from "./utils/print.js";
 // console.log(printer.print())
 
 
-abstractFactoryRun()
+singletonRun()
