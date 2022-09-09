@@ -5,6 +5,7 @@ class NumberGrade implements IGrade { get = () => ['1', '2', '3', '4', '5', '6']
 interface ITask { getName(): string }
 class AddictionTask implements ITask { getName = () => 'Addiction' }
 class SubtractionTask implements ITask { getName = () => 'Subtraction' }
+class DivisionTask implements ITask { getName = () => 'Division' }
 class TheoryOfProbabilityTask implements ITask { getName = () => 'TheoryOfProbability' }
 class IntegralTask implements ITask { getName = () => 'Integral' }
 
@@ -17,10 +18,8 @@ abstract class MathTestGenerator {
 
     toString(): void {
         console.log(`--- ${this.name} ---`)
-        console.log("--- GRADE ---");
-        console.log(this.grade?.get());
-        console.log("--- TASKS ---");
-        this.tasks.forEach(task => console.log(task.getName()))
+        console.log("Grade: ",this.grade?.get());
+        console.log("Tasks: ", this.tasks.map(task => task.getName()));
     }
 }
 
@@ -34,7 +33,8 @@ class PrimarySchoolMathTestGenerator extends MathTestGenerator {
     generateTasks(): void {
         this.tasks = [
             new AddictionTask(),
-            new SubtractionTask()
+            new SubtractionTask(),
+            new DivisionTask()
         ]
     }
 }
