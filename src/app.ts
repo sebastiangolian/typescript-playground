@@ -1,4 +1,4 @@
-import { adapterRun } from "./patterns/adapter.js";
+import { commandRun } from "./patterns/command.js";
 
 
-adapterRun()
+commandRun()
