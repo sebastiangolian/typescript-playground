@@ -1,5 +1,5 @@
 interface NewAppInterface {
-    request(): string 
+    request(): string
 }
 
 class Target implements NewAppInterface {
@@ -9,8 +9,8 @@ class Target implements NewAppInterface {
 }
 
 class OldAppClass {
-    specificRequest(): [number, string] {
-        return [123, "Old App request"];
+    specificRequest(): { code: number, body: string } {
+        return { code: 123, body: "Old App request" };
     }
 }
 
@@ -24,7 +24,7 @@ class Adapter extends Target implements NewAppInterface {
 
     request(): string {
         const oldRequestResult = this.adaptee.specificRequest();
-        return `Adapter: (TRANSLATED) ${oldRequestResult[1]}`;
+        return `Adapter: (TRANSLATED) ${oldRequestResult.body}`;
     }
 }
 
