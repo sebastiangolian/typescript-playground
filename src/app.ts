@@ -1,4 +1,4 @@
-import { commandRun } from "./patterns/command.js";
+import { mediatorRun } from "./patterns/mediator.js";
 
 
-commandRun()
+mediatorRun().then()
