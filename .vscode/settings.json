@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-        "node_modules/": true,
-        "scripts": true,
-      }
+      "node_modules/": true,
+      "scripts": true
+    }
 }
