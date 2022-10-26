@@ -1,6 +1,11 @@
 {
-    "files.exclude": {
-      "node_modules/": true,
-      "scripts": true
-    }
+  "files.exclude": {
+    "node_modules/": true,
+    "scripts": true,
+    ".vscode": true,
+    ".gitignore": true,
+    "package-lock.json": true,
+    "tsconfig.json": true,
+    "dist": true
+  }
 }
