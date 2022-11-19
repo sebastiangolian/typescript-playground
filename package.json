@@ -10,7 +10,8 @@
     "watch": "tsc --w",
     "deploy": "gh-pages -d dist/",
     "node": "nodemon ./dist/js/app.js",
-    "start": "npm run node & npm run watch",
+    "start": "npm run build && node ./dist/js/app.js",
+    "start:watch": "npm run node & npm run watch",
     "start:browser": "concurrently 'npm run watch' 'npm run serve'",
     "start:node": "npm run start"
   },
