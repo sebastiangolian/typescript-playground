@@ -1,3 +1,4 @@
+import { useRandomService } from "../service.provider.js";
 import { getDeviceStorage } from "../storage.provider.js";
 import { IStorageListener } from "../storage.service.js";
 
@@ -21,6 +22,7 @@ export class DeviceService {
     public async updateName(name: string): Promise<void> {
         const currentState = await this.get();
         currentState.name = name;
+        currentState.updateKey = await useRandomService().string(10);
         return this.deviceStorage.setState(currentState)
     }
 
