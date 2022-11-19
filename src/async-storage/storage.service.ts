@@ -36,6 +36,7 @@ export class StorageListener<T> {
     private _state: State;
 
     constructor(channelKey: string) {
+        console.debug(`StorageListener(constructor) channelKey: ${channelKey}`)
         this.channelKey = channelKey;
         this._state = {} as State;
     };

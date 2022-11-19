@@ -7,10 +7,10 @@ export interface IDeviceService {
     onChange(onUpdate: (state: DeviceModel) => any): void
 }
 
-
 export class DeviceService {
     private readonly deviceStorage: IStorageListener<DeviceModel>;
     constructor() {
+        console.debug("DeviceService(constructor)")
         this.deviceStorage = getDeviceStorage();
     }
 
