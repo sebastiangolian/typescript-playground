@@ -9,10 +9,7 @@
     "build": "tsc",
     "watch": "tsc --w",
     "deploy": "gh-pages -d dist/",
-    "node": "nodemon ./dist/js/app.js",
-    "start": "npm run build && node ./dist/js/app.js",
-    "start:watch": "npm run node & npm run watch",
-    "start:browser": "concurrently 'npm run watch' 'npm run serve'",
+    "node": "nodemon --quiet ./dist/js/app.js",
     "start:node": "npm run start"
   },
   "repository": {
@@ -25,7 +22,6 @@
   "author": "sebastiangolian <sebastiangolian@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^7.5.0",
     "gh-pages": "^4.0.0",
     "live-server": "^1.1.0",
     "nodemon": "^2.0.20",
