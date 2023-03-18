@@ -1,15 +1,10 @@
 import { useRandomService } from "../service.provider.js";
 import { getDeviceStorage } from "../storage.provider.js";
-import { IStorageListener } from "../storage.service.js";
+import { StorageListener } from "../storage.service.js";
 
-export interface IDeviceService {
-    get(): Promise<DeviceModel>
-    updateName(name: string): Promise<void>
-    onChange(onUpdate: (state: DeviceModel) => any): void
-}
 
 export class DeviceService {
-    private readonly deviceStorage: IStorageListener<DeviceModel>;
+    private readonly deviceStorage: StorageListener<DeviceModel>;
     constructor() {
         console.debug("DeviceService(constructor)")
         this.deviceStorage = getDeviceStorage();
@@ -28,5 +23,9 @@ export class DeviceService {
 
     public onChange(onUpdate: (state: DeviceModel) => any): void {
         this.deviceStorage.addSubscriber(onUpdate);
+    }
+
+    public removeSubscribers(): void {
+        this.deviceStorage.removeSubscribers()
     }
 }

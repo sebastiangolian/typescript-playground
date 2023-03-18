@@ -1,9 +1,9 @@
-import { IStorageListener, StorageListener } from "./storage.service.js";
+import { StorageListener } from "./storage.service.js";
 
 const enum StorageType {
     Device = "device",
 }
 
-export function getDeviceStorage(): IStorageListener<DeviceModel> {
+export function getDeviceStorage(): StorageListener<DeviceModel> {
     return new StorageListener<DeviceModel>(StorageType.Device);
 }

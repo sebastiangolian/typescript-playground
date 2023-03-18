@@ -22,17 +22,10 @@ class Subscriber {
     }
 }
 
-export interface IStorageListener<T> {
-    setState(value: T): Promise<void>
-    getState(): Promise<T | undefined>
-    existState(): Promise<boolean>
-    clearStorage(): Promise<void>
-    addSubscriber(callback: (state: T) => void): Promise<void>
-    removeSubscriber(): boolean
-}
 
 export class StorageListener<T> {
     private channelKey: string;
+    private clientsIds: number[] = []
     private _state: State;
 
     constructor(channelKey: string) {
@@ -83,25 +76,26 @@ export class StorageListener<T> {
             for (const key in subscribers) {
                 const subscriber: Subscriber = subscribers[key];
                 if (subscriber.channel === this.channelKey) {
-                    subscriber.update(state[this.channelKey])
+                        subscriber.update(state[this.channelKey])
                 }
             }
         })
     };
 
     addSubscriber = async (callback: (state: T) => void): Promise<void> => {
-        console.debug(`StorageListener(addSubscriber) storage: ${this.channelKey}`)
+        const clientId = this.clientsIds.length + 1
+        this.clientsIds.push(clientId)
+        console.debug(`StorageListener(addSubscriber) storage: ${this.channelKey}, clientId: ${clientId}`)
         const state = await this.state();
- 
-        subscribers[this.channelKey] = new Subscriber(callback, this.channelKey);
-        subscribers[this.channelKey].update(state[this.channelKey]);
+
+        subscribers[clientId] = new Subscriber(callback, this.channelKey);
+        subscribers[clientId].update(state[this.channelKey]);
     };
 
-    removeSubscriber = (): boolean => {
-        if (subscribers[this.channelKey]) {
-            return (delete subscribers[this.channelKey])
-        } else {
-            return false
-        }
+    removeSubscribers = (): void => {
+        this.clientsIds.forEach(clientId => {
+            console.log(`Remove subscriber: ${clientId}`)
+            return (delete subscribers[clientId])
+        });
     };
 }

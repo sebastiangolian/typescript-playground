@@ -1,7 +1,3 @@
-export interface IRandomService {
-    string(len: number): Promise<string>
-}
-
 export class RandomService {
     constructor() {
         console.debug("RandomService(constructor)")
