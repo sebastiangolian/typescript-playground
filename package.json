@@ -5,12 +5,11 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "serve": "live-server ./dist --port=8081 --wait=100",
+    "start:watch": "tsc --w",
+    "start:node": "nodemon --quiet ./dist/js/app.js",
+    "start:serve": "live-server ./dist --port=8081 --wait=100",
     "build": "tsc",
-    "watch": "tsc --w",
-    "deploy": "gh-pages -d dist/",
-    "node": "nodemon --quiet ./dist/js/app.js",
-    "start:node": "npm run start"
+    "deploy": "gh-pages -d dist/"
   },
   "repository": {
     "type": "git",

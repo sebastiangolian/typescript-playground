@@ -15,9 +15,9 @@ class Mediator {
     }
 }
 
-export const MEDIATOR = new Mediator();
+const MEDIATOR = new Mediator();
 
-export type MediatorCommands =
+type MediatorCommands =
     { type: "CREATE_ROLE"; arg: CreatePermissionRequest | typeof createPermissionHandler } |
     { type: "CREATE_USER"; arg: CreateUserRequest | typeof createUserHandler }
 
@@ -28,16 +28,16 @@ interface StandardResponse { status: string, message: string }
 interface CreateUserRequest { id: string, username: string }
 interface CreateUserResponse { status: string, body: CreateUserRequest }
 
-export function createPermissionHandler(createPermissionDTO: CreatePermissionRequest): StandardResponse {
+function createPermissionHandler(createPermissionDTO: CreatePermissionRequest): StandardResponse {
     return { status: 'OK', message: `Success create permission: ${createPermissionDTO.permission}` }
 }
 
-export function createUserHandler(createPermissionDTO: CreateUserRequest): CreateUserResponse {
+function createUserHandler(createPermissionDTO: CreateUserRequest): CreateUserResponse {
     return { status: 'OK', body: createPermissionDTO }
 }
 
 
-export async function mediatorRun(): Promise<void> {
+export async function testMediator(): Promise<void> {
     MEDIATOR.registerCommands([
         { type: "CREATE_ROLE", arg: createPermissionHandler },
         { type: "CREATE_USER", arg: createUserHandler }

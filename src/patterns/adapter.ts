@@ -1,40 +1,52 @@
-interface NewAppInterface {
-    request(): string
+interface ICarRentApi {
+    getCarRegistrationNumber(carId: number): string
+    rentCar(carId: number): string
 }
 
-class Target implements NewAppInterface {
-    request(): string {
-        return 'New App request';
+class CarRentApi implements ICarRentApi {
+    getCarRegistrationNumber(carId: number): string {
+        return `Car ${carId} from CarRentApi`;
+    }
+    rentCar(carId: number): string {
+        return `Rent car ${carId} from CarRentApi`;
     }
 }
 
-class OldAppClass {
-    specificRequest(): { code: number, body: string } {
-        return { code: 123, body: "Old App request" };
+class NorwayCarRentApi {
+    getCar(id: number, apiKey: string): string {
+        return `Car ${id} from NorwayCarRentApi`;
+    }
+
+    rent(id: number): string {
+        return `Rent car ${id} from NorwayCarRentApi`;
     }
 }
 
-class Adapter extends Target implements NewAppInterface {
-    private adaptee: OldAppClass;
+class AdapterNorwayCarRentApi extends CarRentApi implements ICarRentApi {
+    NORWAY_API_KEY = 'xxx'
+    private adaptee: NorwayCarRentApi;
 
-    constructor(adaptee: OldAppClass) {
+    constructor() {
         super();
-        this.adaptee = adaptee;
+        this.adaptee = new NorwayCarRentApi();
     }
 
-    request(): string {
-        const oldRequestResult = this.adaptee.specificRequest();
-        return `Adapter: (TRANSLATED) ${oldRequestResult.body}`;
+    getCarRegistrationNumber(carId: number): string {
+        return this.adaptee.getCar(carId, this.NORWAY_API_KEY);
+    }
+
+    rentCar(carId: number): string {
+        return this.adaptee.rent(carId);
     }
 }
 
-function newAppMethod(target: Target) {
-    console.log(target.request());
-}
 
-export function adapterRun(): void {
-    newAppMethod(new Target());
-    ///newAppMethod(new OldAppClass());             //BAD
-    newAppMethod(new Adapter(new OldAppClass()));
+
+export function testAdapter(): void {
+    console.log(new CarRentApi().getCarRegistrationNumber(123))
+    console.log(new AdapterNorwayCarRentApi().getCarRegistrationNumber(345))
+    
+    console.log(new CarRentApi().rentCar(123))
+    console.log(new AdapterNorwayCarRentApi().rentCar(345))
 }
 
