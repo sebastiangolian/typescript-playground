@@ -3,50 +3,54 @@ interface ICarRentApi {
     rentCar(carId: number): string
 }
 
-class CarRentApi implements ICarRentApi {
-    getCarRegistrationNumber(carId: number): string {
-        return `Car ${carId} from CarRentApi`;
-    }
-    rentCar(carId: number): string {
-        return `Rent car ${carId} from CarRentApi`;
-    }
-}
-
 class NorwayCarRentApi {
-    getCar(id: number, apiKey: string): string {
+    getCar(id: number): string {
         return `Car ${id} from NorwayCarRentApi`;
     }
 
-    rent(id: number): string {
+    rent(id: number, apiKey: string): string {
         return `Rent car ${id} from NorwayCarRentApi`;
     }
 }
 
-class AdapterNorwayCarRentApi extends CarRentApi implements ICarRentApi {
+class AdapterNorwayCarRentApi implements ICarRentApi {
     NORWAY_API_KEY = 'xxx'
     private adaptee: NorwayCarRentApi;
 
     constructor() {
-        super();
         this.adaptee = new NorwayCarRentApi();
     }
 
     getCarRegistrationNumber(carId: number): string {
-        return this.adaptee.getCar(carId, this.NORWAY_API_KEY);
+        return this.adaptee.getCar(carId);
     }
 
     rentCar(carId: number): string {
-        return this.adaptee.rent(carId);
+        return this.adaptee.rent(carId, this.NORWAY_API_KEY);
+    }
+}
+
+
+class ApiFacade {
+    private api: ICarRentApi;
+    constructor(api: ICarRentApi) {
+        this.api = api;
+    }
+    getCarRegistrationNumber(carId: number): string {
+        return this.api.getCarRegistrationNumber(carId)
+    }
+
+    rentCar(carId: number): string {
+        return this.api.rentCar(carId)
     }
 }
 
 
 
+
 export function testAdapter(): void {
-    console.log(new CarRentApi().getCarRegistrationNumber(123))
-    console.log(new AdapterNorwayCarRentApi().getCarRegistrationNumber(345))
-    
-    console.log(new CarRentApi().rentCar(123))
-    console.log(new AdapterNorwayCarRentApi().rentCar(345))
+    const facade = new ApiFacade(new AdapterNorwayCarRentApi())
+    console.log(facade.getCarRegistrationNumber(123))
+    console.log(facade.rentCar(123))
 }
 
