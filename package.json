@@ -9,7 +9,8 @@
     "start:node": "nodemon --quiet ./dist/js/app.js",
     "start:serve": "live-server ./dist --port=8081 --wait=100",
     "build": "tsc",
-    "deploy": "gh-pages -d dist/"
+    "deploy": "gh-pages -d dist/",
+    "update": "ncu -i"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,8 @@
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^5.0.0",
-    "live-server": "^1.1.0",
-    "nodemon": "^2.0.21",
-    "typescript": "^5.0.2"
+    "live-server": "^1.2.2",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.3"
   }
 }
