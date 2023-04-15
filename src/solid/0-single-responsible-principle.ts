@@ -1,6 +1,6 @@
 // BAD
 // class Book {
-//     itle: string = "";
+//     title: string = "";
 //     author: string = "";
 //     description: string = "";
 //     pages: number = 100;
