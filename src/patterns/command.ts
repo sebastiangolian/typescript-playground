@@ -1,4 +1,3 @@
-
 interface Command { execute(): void; }
 
 
@@ -13,7 +12,6 @@ class SimpleCommand implements Command {
         console.log(`SimpleCommand.execute (${this.payload})`);
     }
 }
-
 
 class ComplexCommand implements Command {
     private receiver: Receiver;

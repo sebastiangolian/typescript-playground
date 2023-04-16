@@ -68,7 +68,6 @@ class MathTest {
     }
 }
 
-
 export function abstractFactoryRun(): void {
     const mathTest1: MathTest = new MathTest(new PrimarySchoolMathTestGenerator());
     const mathTest2: MathTest = new MathTest(new HighSchoolMathTestGenerator());

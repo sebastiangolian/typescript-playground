@@ -36,7 +36,6 @@ function createUserHandler(createPermissionDTO: CreateUserRequest): CreateUserRe
     return { status: 'OK', body: createPermissionDTO }
 }
 
-
 export async function testMediator(): Promise<void> {
     MEDIATOR.registerCommands([
         { type: "CREATE_ROLE", arg: createPermissionHandler },

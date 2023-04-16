@@ -30,7 +30,6 @@ class AdapterNorwayCarRentApi implements ICarRentApi {
     }
 }
 
-
 class ApiFacade {
     private api: ICarRentApi;
     constructor(api: ICarRentApi) {
@@ -45,12 +44,8 @@ class ApiFacade {
     }
 }
 
-
-
-
 export function testAdapter(): void {
     const facade = new ApiFacade(new AdapterNorwayCarRentApi())
     console.log(facade.getCarRegistrationNumber(123))
     console.log(facade.rentCar(123))
 }
-
