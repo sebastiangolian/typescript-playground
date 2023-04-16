@@ -23,31 +23,31 @@
 // }
 
 interface Developer {
-    develop(): void;
+  develop(): void;
 }
 
 class FrontendDeveloper implements Developer {
-    develop(): void {
-        this.writeHtmlCode();
-    }
+  develop(): void {
+    this.writeHtmlCode();
+  }
 
-    private writeHtmlCode(): void { }
+  private writeHtmlCode(): void {}
 }
 
 class BackendDeveloper implements Developer {
-    develop(): void {
-        this.writeTypeScriptCode();
-    }
+  develop(): void {
+    this.writeTypeScriptCode();
+  }
 
-    private writeTypeScriptCode(): void { }
+  private writeTypeScriptCode(): void {}
 }
 
 class SoftwareProject {
-    private developers: Developer[] = [];
+  private developers: Developer[] = [];
 
-    createProject(): void {
-        this.developers.forEach((developer: Developer) => {
-            developer.develop();
-        });
-    }
+  createProject(): void {
+    this.developers.forEach((developer: Developer) => {
+      developer.develop();
+    });
+  }
 }

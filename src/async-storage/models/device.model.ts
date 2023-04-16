@@ -1,5 +1,5 @@
 interface DeviceModel {
-    id: number;
-    name: string;
-    updateKey?: string;
+  id: number;
+  name: string;
+  updateKey?: string;
 }

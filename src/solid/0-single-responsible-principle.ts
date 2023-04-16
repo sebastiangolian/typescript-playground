@@ -9,12 +9,12 @@
 // }
 
 class Book {
-    title: string = "";
-    author: string = "";
-    description: string = "";
-    pages: number = 100;
+  title: string = "";
+  author: string = "";
+  description: string = "";
+  pages: number = 100;
 }
 
 class Persistence {
-    saveToFile(book: Book): void { }
+  saveToFile(book: Book): void {}
 }

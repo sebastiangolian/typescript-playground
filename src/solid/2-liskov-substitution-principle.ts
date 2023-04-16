@@ -26,19 +26,19 @@
 // }
 
 class RectangleGood {
-    private width: number;
-    private height: number;
+  private width: number;
+  private height: number;
 
-    constructor(width: number, height: number) {
-        this.width = width;
-        this.height = height;
-    }
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
 
-    calculateArea(): number {
-        return this.width * this.height;
-    }
+  calculateArea(): number {
+    return this.width * this.height;
+  }
 
-    isSquare(): boolean {
-        return this.width === this.height;
-    }
+  isSquare(): boolean {
+    return this.width === this.height;
+  }
 }

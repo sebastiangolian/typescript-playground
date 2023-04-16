@@ -14,22 +14,22 @@
 // }
 
 interface Talker {
-    talk(): void;
+  talk(): void;
 }
 
 interface Shooter {
-    shoot(): void;
+  shoot(): void;
 }
 
 interface Swimmer {
-    swim(): void;
+  swim(): void;
 }
 
 interface Dancer {
-    dance(): void;
+  dance(): void;
 }
 
 class Troll implements Shooter, Dancer {
-    shoot(): void { }
-    dance(): void { }
+  shoot(): void {}
+  dance(): void {}
 }
