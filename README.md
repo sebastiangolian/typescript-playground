@@ -25,3 +25,6 @@ Deploy files in gh-pages
 ```bash
 npm run deploy
 ```
+
+## Useful links
+- https://www.dofactory.com/javascript/design-patterns
