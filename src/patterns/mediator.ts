@@ -1,50 +1,62 @@
-class Mediator {
+class Chatroom {
+  private users: { [index: string]: User } = {};
 
-    private commands: { [x: string]: Function; } = {};
+  register(user: User): void {
+    const username = user.getUsername();
+    user.setChatroom(this)
+    this.users[username] = user;
+  }
 
-    registerCommand(command: MediatorCommands) {
-        this.commands[command.type] = command.arg as Function;
+  send(message: string, from: User, to: User|null = null): void {
+    if (to) {
+      to.receive(message, from);
+    } else {
+        Object.keys(this.users).forEach(key => {
+            if(this.users[key] != from) {
+                this.users[key].receive(message, from)
+            }
+        })
     }
-
-    registerCommands(commands: MediatorCommands[]) {
-        commands.forEach(command => this.registerCommand(command))
-    }
-
-    dispatchCommand<TResult>({ type, arg }: MediatorCommands) {
-        return this.commands[type](arg) as Promise<TResult>;
-    }
+  }
 }
 
-const MEDIATOR = new Mediator();
+class User {
+  private chatroom: Chatroom | null = null;
+  private username: string;
+  constructor(username: string) {
+    this.username = username;
+  }
 
-type MediatorCommands =
-    { type: "CREATE_ROLE"; arg: CreatePermissionRequest | typeof createPermissionHandler } |
-    { type: "CREATE_USER"; arg: CreateUserRequest | typeof createUserHandler }
+  setChatroom(chatroom: Chatroom): void {
+    this.chatroom = chatroom;
+  }
 
+  getUsername(): string {
+    return this.username;
+  }
 
-interface CreatePermissionRequest { id: string, permission: string }
-interface StandardResponse { status: string, message: string }
+  send(message: string, to: User | null = null): void {
+    this.chatroom?.send(message, this, to)
+  }
 
-interface CreateUserRequest { id: string, username: string }
-interface CreateUserResponse { status: string, body: CreateUserRequest }
-
-function createPermissionHandler(createPermissionDTO: CreatePermissionRequest): StandardResponse {
-    return { status: 'OK', message: `Success create permission: ${createPermissionDTO.permission}` }
+  receive(message: string, from: User | null = null): void {
+    console.log(from?.getUsername() + " to " + this.getUsername() + ": " + message);
+  }
 }
 
-function createUserHandler(createPermissionDTO: CreateUserRequest): CreateUserResponse {
-    return { status: 'OK', body: createPermissionDTO }
-}
+export function testMediator() {
+  const user1 = new User("John");
+  const user2 = new User("Maria");
+  const user3 = new User("Michael");
 
-export async function testMediator(): Promise<void> {
-    MEDIATOR.registerCommands([
-        { type: "CREATE_ROLE", arg: createPermissionHandler },
-        { type: "CREATE_USER", arg: createUserHandler }
-    ])
+  const chatroom = new Chatroom();
+  chatroom.register(user1);
+  chatroom.register(user2);
+  chatroom.register(user3);
 
-    const result1 = await MEDIATOR.dispatchCommand<StandardResponse>({ type: "CREATE_ROLE", arg: { id: '1', permission: 'permission-1' } });
-    const result2 = await MEDIATOR.dispatchCommand<CreateUserResponse>({ type: "CREATE_USER", arg: { id: '1', username: 'user-1' } });
-
-    console.log(result1)
-    console.log(result2)
+  user1.send("All you need is love.");
+  user2.send("I love you John.");
+  user2.send("Hey, no need to broadcast", user1);
+  user3.send("Ha, I heard that!");
+  user2.send("Paul, what do you think?", user3);
 }
